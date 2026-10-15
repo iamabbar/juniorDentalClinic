@@ -1,5 +1,5 @@
 ---
-import { CLINIC, NAV_LINKS, LOGO_LETTER_COLORS } from '../consts';
+import { NAV_LINKS, LOGO_LETTER_COLORS } from '../consts';
 
 const logoLetters = 'Junior'.split('');
 ---
@@ -11,8 +11,11 @@ const logoLetters = 'Junior'.split('');
         {logoLetters.map((letter, i) => <span style={`color:${LOGO_LETTER_COLORS[i % LOGO_LETTER_COLORS.length]}`}>{letter}</span>)}
         <span class="logo-rest"> Dental Clinic</span>
       </span>
-      <span class="logo-sub">{CLINIC.tagline} · {CLINIC.doctorName.toUpperCase()}</span>
     </a>
+    <input type="checkbox" id="nav-toggle" class="nav-toggle-input" />
+    <label for="nav-toggle" class="nav-toggle-btn" aria-label="Toggle navigation">
+      <span></span><span></span><span></span>
+    </label>
     <nav aria-label="Main" class="nav">
       {NAV_LINKS.map((link) => <a href={link.href}>{link.label}</a>)}
       <a href="#contact" class="nav-cta">Book an appointment</a>
@@ -30,12 +33,36 @@ const logoLetters = 'Junior'.split('');
   }
 
   .inner {
-    padding-block: 18px;
+    position: relative;
+    padding-block: 12px;
     display: flex;
     flex-wrap: wrap;
     align-items: center;
     justify-content: space-between;
     gap: 14px;
+  }
+
+  .nav-toggle-input {
+    display: none;
+  }
+
+  .nav-toggle-btn {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+  }
+
+  .nav-toggle-btn span {
+    display: block;
+    width: 22px;
+    height: 2px;
+    margin: 0 auto;
+    background: var(--color-ink);
+    transition: transform 0.2s ease, opacity 0.2s ease;
   }
 
   .logo {
@@ -55,14 +82,6 @@ const logoLetters = 'Junior'.split('');
     color: var(--color-ink);
   }
 
-  .logo-sub {
-    font-size: 12px;
-    font-weight: 700;
-    letter-spacing: 2px;
-    color: var(--color-ink-soft);
-    margin-top: 4px;
-  }
-
   .nav {
     display: flex;
     flex-wrap: wrap;
@@ -73,16 +92,62 @@ const logoLetters = 'Junior'.split('');
   }
 
   .nav a {
-    padding: 12px 12px;
+    padding: 8px 12px;
     text-decoration: none;
   }
 
   .nav-cta {
     margin-left: 8px;
-    padding: 13px 24px !important;
+    padding: 10px 22px !important;
     background: var(--color-gold);
     color: var(--color-ink);
     border-radius: 999px;
     font-weight: 700;
+  }
+
+  @media (max-width: 760px) {
+    .nav-toggle-btn {
+      display: flex;
+    }
+
+    .nav {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      flex-direction: column;
+      align-items: stretch;
+      gap: 2px;
+      background: var(--color-white);
+      border-bottom: 1px solid var(--color-border);
+      box-shadow: 0 16px 28px rgba(20, 40, 75, 0.1);
+      padding: 8px 24px 20px;
+    }
+
+    .nav a {
+      padding: 14px 4px;
+    }
+
+    .nav-cta {
+      margin: 8px 0 0;
+      text-align: center;
+    }
+
+    .nav-toggle-input:checked ~ .nav {
+      display: flex;
+    }
+
+    .nav-toggle-input:checked ~ .nav-toggle-btn span:nth-child(1) {
+      transform: translateY(7px) rotate(45deg);
+    }
+
+    .nav-toggle-input:checked ~ .nav-toggle-btn span:nth-child(2) {
+      opacity: 0;
+    }
+
+    .nav-toggle-input:checked ~ .nav-toggle-btn span:nth-child(3) {
+      transform: translateY(-7px) rotate(-45deg);
+    }
   }
 </style>

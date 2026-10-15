@@ -118,6 +118,7 @@ const dotColor: Record<string, string> = {
   }
 
   .dot {
+    flex-shrink: 0;
     width: 10px;
     height: 10px;
     border-radius: 50%;
@@ -128,11 +129,7 @@ const dotColor: Record<string, string> = {
   }
 
   .connector {
-    position: absolute;
-    left: 5%;
-    width: 90%;
-    top: 50px;
-    height: 120px;
+    display: none;
   }
 
   .steps {
@@ -141,8 +138,31 @@ const dotColor: Record<string, string> = {
     padding: 0;
     list-style: none;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    grid-template-columns: 1fr;
     gap: 24px;
+  }
+
+  @media (min-width: 640px) {
+    .steps {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  /* The wavy connector is hand-drawn for exactly 4 circles in a single
+     row, so only show it once the grid actually renders that way. */
+  @media (min-width: 1040px) {
+    .steps {
+      grid-template-columns: repeat(4, 1fr);
+    }
+
+    .connector {
+      display: block;
+      position: absolute;
+      left: 5%;
+      width: 90%;
+      top: 50px;
+      height: 120px;
+    }
   }
 
   .tip {
