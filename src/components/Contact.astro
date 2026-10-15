@@ -1,0 +1,303 @@
+---
+import SectionEyebrow from './SectionEyebrow.astro';
+import Icon from './icons/Icon.astro';
+import { CONTACT, CLINIC } from '../consts';
+---
+
+<section id="contact" class="contact">
+  <div class="container">
+    <div class="panel">
+      <span class="ring" aria-hidden="true"></span>
+      <span class="circle" aria-hidden="true"></span>
+
+      <div class="left">
+        <SectionEyebrow label={CONTACT.eyebrow} dotColor="var(--color-gold)" textColor="var(--color-gold)" />
+        <h2>{CONTACT.heading} <em>{CONTACT.headingEmphasis}</em></h2>
+        <p class="intro">{CONTACT.intro}</p>
+        <div class="cards">
+          <a href={`tel:${CLINIC.phone}`} class="card call">
+            <span class="icon-circle white"><Icon name="phone" color="var(--color-ink)" size={26} strokeWidth={2} /></span>
+            <span class="card-title">Call to book</span>
+            <span class="card-sub">{CLINIC.phoneDisplay} →</span>
+          </a>
+          <a href={`https://wa.me/${CLINIC.whatsappNumber}`} class="card whatsapp">
+            <span class="icon-circle green"><Icon name="chat" color="var(--accent-green)" size={26} strokeWidth={2} /></span>
+            <span class="card-title">WhatsApp us</span>
+            <span class="card-sub">Quick replies, any day →</span>
+          </a>
+          <a href={`mailto:${CLINIC.email}`} class="card email">
+            <span class="icon-circle ink"><Icon name="email" color="var(--color-icon-email-stroke)" size={26} strokeWidth={2} /></span>
+            <span class="card-title">Send an email</span>
+            <span class="card-sub">{CLINIC.email} →</span>
+          </a>
+        </div>
+      </div>
+
+      <div class="right">
+        <div class="map">
+          [ Google Map ]
+          <span class="pin" aria-hidden="true"></span>
+        </div>
+        <div class="dashed"></div>
+        <div class="info">
+          <div class="address">
+            <span class="icon-circle pink"><Icon name="map-pin" color="var(--accent-pink)" size={22} strokeWidth={2} /></span>
+            <div>
+              <div class="address-line">{CLINIC.address.line}</div>
+              <div class="address-area">{CLINIC.address.area} · <a href={CLINIC.address.mapsLink}>Get directions</a></div>
+            </div>
+          </div>
+          <div class="hours">
+            <div class="hours-title">Opening hours</div>
+            <div class="hours-row">
+              {CONTACT.hours.map((entry) => (
+                <div class:list={['hours-cell', { closed: entry.isClosed }]}>
+                  <div class="day">{entry.day}</div>
+                  <div class="time">{entry.time}</div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .contact {
+    padding: 96px 0;
+    background: var(--color-sky);
+  }
+
+  .panel {
+    background: var(--color-ink);
+    border-radius: 44px;
+    padding: clamp(32px, 5vw, 64px);
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 40px;
+  }
+
+  .ring {
+    position: absolute;
+    top: -120px;
+    left: -120px;
+    width: 320px;
+    height: 320px;
+    border-radius: 50%;
+    border: 2px solid var(--color-ink-circle-border);
+  }
+
+  .circle {
+    position: absolute;
+    bottom: -80px;
+    right: 34%;
+    width: 160px;
+    height: 160px;
+    border-radius: 50%;
+    background: var(--color-ink-circle-bg);
+  }
+
+  .left {
+    position: relative;
+    flex: 1 1 460px;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+    color: var(--color-white);
+  }
+
+  h2 {
+    margin: 0;
+    font-family: var(--font-serif);
+    font-weight: 500;
+    font-size: clamp(34px, 4vw, 54px);
+    line-height: 1.08;
+  }
+
+  h2 em {
+    color: var(--color-gold);
+    font-style: normal;
+  }
+
+  .intro {
+    margin: 0;
+    color: var(--color-ink-text-soft);
+    max-width: 460px;
+  }
+
+  .cards {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+  }
+
+  .card {
+    flex: 1 1 220px;
+    min-width: 0;
+    border-radius: 28px;
+    padding: 24px;
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  .card.call {
+    background: var(--color-gold);
+    color: var(--color-ink);
+  }
+
+  .card.whatsapp {
+    background: var(--color-white);
+    color: var(--color-ink);
+  }
+
+  .card.email {
+    background: var(--color-ink-circle-border);
+    color: var(--color-white);
+  }
+
+  .icon-circle {
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .icon-circle.white {
+    background: var(--color-white);
+  }
+
+  .icon-circle.green {
+    background: var(--accent-green-bg);
+  }
+
+  .icon-circle.ink {
+    background: var(--color-ink);
+  }
+
+  .icon-circle.pink {
+    background: var(--accent-pink-bg);
+    flex: 0 0 44px;
+    height: 44px;
+  }
+
+  .card-title {
+    font-family: var(--font-serif);
+    font-weight: 600;
+    font-size: 24px;
+    line-height: 1.1;
+  }
+
+  .card-sub {
+    font-size: 15px;
+    opacity: 0.9;
+  }
+
+  .right {
+    position: relative;
+    flex: 1 1 380px;
+    min-width: 0;
+    background: var(--color-white);
+    border-radius: 32px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .map {
+    min-height: 210px;
+    background: var(--accent-teal-bg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--accent-teal);
+    font-weight: 700;
+    position: relative;
+  }
+
+  .pin {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -120%);
+    width: 52px;
+    height: 52px;
+    border-radius: 50% 50% 50% 0;
+    background: var(--accent-pink);
+    rotate: -45deg;
+  }
+
+  .dashed {
+    height: 0;
+    border-top: 3px dashed var(--color-border);
+    margin: 0 24px;
+  }
+
+  .info {
+    padding: 24px 28px 28px;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    color: var(--color-ink);
+  }
+
+  .address {
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+  }
+
+  .address-line {
+    font-weight: 800;
+  }
+
+  .address-area {
+    color: var(--color-ink-soft);
+    font-size: 15px;
+  }
+
+  .hours-title {
+    font-weight: 800;
+    margin-bottom: 10px;
+  }
+
+  .hours-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  .hours-cell {
+    flex: 1 1 64px;
+    text-align: center;
+    border-radius: 16px;
+    padding: 10px 4px;
+    background: var(--color-hours-bg);
+  }
+
+  .hours-cell.closed {
+    background: var(--accent-pink-bg);
+  }
+
+  .hours-cell .day {
+    font-weight: 800;
+    font-size: 14px;
+  }
+
+  .hours-cell .time {
+    font-size: 13px;
+    color: var(--color-ink-soft);
+  }
+
+  .hours-cell.closed .time {
+    color: var(--accent-pink);
+  }
+</style>

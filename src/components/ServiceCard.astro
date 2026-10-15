@@ -1,0 +1,187 @@
+---
+import Icon from './icons/Icon.astro';
+import type { IconName } from './icons/Icon.astro';
+
+interface FeaturedProps {
+  featured: true;
+  badge: string;
+  icon: IconName;
+  title: string;
+  description: string;
+  ctaLabel: string;
+  ctaHref: string;
+}
+
+interface StandardProps {
+  featured?: false;
+  number: string;
+  icon: IconName;
+  accent: 'pink' | 'gold' | 'purple' | 'teal' | 'green';
+  blob: string;
+  title: string;
+  description: string;
+}
+
+type Props = FeaturedProps | StandardProps;
+
+const props = Astro.props as Props;
+
+const accentColor: Record<string, string> = {
+  pink: 'var(--accent-pink)',
+  gold: 'var(--accent-gold)',
+  purple: 'var(--accent-purple)',
+  teal: 'var(--accent-teal)',
+  green: 'var(--accent-green)',
+};
+
+const accentBg: Record<string, string> = {
+  pink: 'var(--accent-pink-bg)',
+  gold: 'var(--accent-gold-bg)',
+  purple: 'var(--accent-purple-bg)',
+  teal: 'var(--accent-teal-bg)',
+  green: 'var(--accent-green-bg)',
+};
+---
+
+{
+  props.featured ? (
+    <div class="card featured">
+      <span class="decor-ring" aria-hidden="true"></span>
+      <span class="badge">
+        <Icon name={props.icon} color="var(--color-gold)" size={18} />
+        {props.badge}
+      </span>
+      <h3 class="featured-title">{props.title}</h3>
+      <p class="featured-description">{props.description}</p>
+      <a href={props.ctaHref} class="cta">{props.ctaLabel}</a>
+    </div>
+  ) : (
+    <div class="card">
+      <span class="blob" style={`background:${accentBg[props.accent]}; border-radius:${props.blob}`} aria-hidden="true"></span>
+      <span class="icon-badge">
+        <Icon name={props.icon} color={accentColor[props.accent]} size={30} />
+      </span>
+      <span class="number" style={`color:${accentColor[props.accent]}`}>{props.number}</span>
+      <h3>{props.title}</h3>
+      <p>{props.description}</p>
+    </div>
+  )
+}
+
+<style>
+  .card {
+    background: var(--color-white);
+    border: 2px solid var(--color-border);
+    border-radius: 32px;
+    padding: 30px;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    min-height: 260px;
+  }
+
+  .blob {
+    position: absolute;
+    top: -34px;
+    right: -34px;
+    width: 150px;
+    height: 150px;
+  }
+
+  .icon-badge {
+    position: absolute;
+    top: 26px;
+    right: 26px;
+    width: 58px;
+    height: 58px;
+    border-radius: 50%;
+    background: var(--color-white);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 6px 16px rgba(20, 40, 75, 0.1);
+  }
+
+  .number {
+    position: relative;
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: 22px;
+  }
+
+  h3 {
+    position: relative;
+    margin: auto 0 0;
+    font-family: var(--font-serif);
+    font-weight: 600;
+    font-size: 26px;
+    line-height: 1.15;
+    max-width: 240px;
+  }
+
+  p {
+    position: relative;
+    margin: 0;
+    color: var(--color-ink-soft);
+    font-size: 16px;
+  }
+
+  .card.featured {
+    background: var(--color-gold);
+    border: none;
+  }
+
+  .decor-ring {
+    position: absolute;
+    bottom: -60px;
+    right: -40px;
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    border: 22px solid var(--color-gold-decor);
+  }
+
+  .badge {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    align-self: flex-start;
+    background: var(--color-ink);
+    color: var(--color-white);
+    border-radius: 999px;
+    padding: 6px 14px;
+    font-size: 14px;
+    font-weight: 700;
+  }
+
+  .featured-title {
+    position: relative;
+    margin: auto 0 0;
+    font-family: var(--font-serif);
+    font-weight: 600;
+    font-size: 30px;
+    line-height: 1.1;
+    color: var(--color-ink);
+  }
+
+  .featured-description {
+    position: relative;
+    margin: 0;
+    color: var(--color-ink);
+    font-size: 16px;
+  }
+
+  .cta {
+    position: relative;
+    align-self: flex-start;
+    padding: 12px 22px;
+    background: var(--color-ink);
+    color: var(--color-white);
+    border-radius: 999px;
+    text-decoration: none;
+    font-weight: 700;
+  }
+</style>

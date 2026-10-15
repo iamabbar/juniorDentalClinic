@@ -1,0 +1,32 @@
+---
+interface Props {
+  label: string;
+  dotColor?: string;
+  textColor?: string;
+}
+
+const { label, dotColor = 'var(--accent-pink)', textColor = 'var(--color-accent)' } = Astro.props;
+---
+
+<span class="eyebrow" style={`--dot-color:${dotColor}; --text-color:${textColor}`}>
+  <span class="dot" aria-hidden="true"></span>{label}
+</span>
+
+<style>
+  .eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    color: var(--text-color);
+  }
+
+  .dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--dot-color);
+  }
+</style>

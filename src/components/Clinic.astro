@@ -1,0 +1,64 @@
+---
+import { CLINIC_GALLERY } from '../consts';
+---
+
+<section id="clinic" class="clinic">
+  <div class="container inner">
+    <div class="heading-row">
+      <h2>{CLINIC_GALLERY.heading}</h2>
+      <a href="https://www.instagram.com/juniordental/" class="ig-link">{CLINIC_GALLERY.instagramLabel}</a>
+    </div>
+    <div class="grid">
+      {CLINIC_GALLERY.photos.map((photo) => <div class="photo">[ {photo} ]</div>)}
+    </div>
+  </div>
+</section>
+
+<style>
+  .clinic {
+    padding: 96px 0;
+  }
+
+  .inner {
+    display: flex;
+    flex-direction: column;
+    gap: 36px;
+  }
+
+  .heading-row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 16px;
+  }
+
+  h2 {
+    margin: 0;
+    font-family: var(--font-serif);
+    font-weight: 500;
+    font-size: clamp(34px, 4vw, 52px);
+    line-height: 1.1;
+  }
+
+  .ig-link {
+    font-weight: 700;
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 16px;
+  }
+
+  .photo {
+    aspect-ratio: 4 / 3;
+    border-radius: 22px;
+    background: var(--color-sky);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-placeholder-text);
+    font-weight: 600;
+  }
+</style>

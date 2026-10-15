@@ -1,0 +1,74 @@
+---
+import SectionEyebrow from './SectionEyebrow.astro';
+import ServiceCard from './ServiceCard.astro';
+import { SERVICES } from '../consts';
+---
+
+<section id="services" class="services">
+  <div class="container inner">
+    <div class="heading-row">
+      <div class="heading-text">
+        <SectionEyebrow label={SERVICES.eyebrow} dotColor="var(--accent-gold)" />
+        <h2>
+          {SERVICES.heading} <em>{SERVICES.headingEmphasis}</em> {SERVICES.headingSuffix}
+        </h2>
+      </div>
+      <p class="intro">{SERVICES.intro}</p>
+    </div>
+    <div class="grid">
+      {SERVICES.items.map((item) => <ServiceCard {...(item as any)} />)}
+    </div>
+  </div>
+</section>
+
+<style>
+  .services {
+    padding: 96px 0;
+  }
+
+  .inner {
+    display: flex;
+    flex-direction: column;
+    gap: 48px;
+  }
+
+  .heading-row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 20px;
+  }
+
+  .heading-text {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    max-width: 620px;
+  }
+
+  h2 {
+    margin: 0;
+    font-family: var(--font-serif);
+    font-weight: 500;
+    font-size: clamp(34px, 4vw, 52px);
+    line-height: 1.1;
+  }
+
+  h2 em {
+    color: var(--color-accent);
+    font-style: normal;
+  }
+
+  .intro {
+    margin: 0;
+    color: var(--color-ink-soft);
+    max-width: 360px;
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+  }
+</style>

@@ -1,0 +1,72 @@
+---
+import WaveDivider from './WaveDivider.astro';
+import { REVIEWS, CLINIC } from '../consts';
+---
+
+<WaveDivider color="var(--color-ink)" marginTop="40px" />
+<section id="reviews" class="reviews">
+  <div class="inner">
+    <div class="quote-mark" aria-hidden="true">&ldquo;</div>
+    <span class="eyebrow">{REVIEWS.eyebrow}</span>
+    <blockquote>&ldquo;{REVIEWS.quote}&rdquo;</blockquote>
+    <div class="author">{REVIEWS.parentName} <span class="source">· {REVIEWS.source}</span></div>
+    <a href={CLINIC.googleReviewsUrl} class="link">{REVIEWS.linkLabel}</a>
+  </div>
+</section>
+<WaveDivider color="var(--color-ink)" flip />
+
+<style>
+  .reviews {
+    padding: 56px 24px 72px;
+    background: var(--color-ink);
+    color: var(--color-white);
+  }
+
+  .inner {
+    max-width: 900px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+    align-items: center;
+    text-align: center;
+  }
+
+  .quote-mark {
+    font-family: var(--font-serif);
+    font-size: 120px;
+    line-height: 0.5;
+    color: var(--color-gold);
+    margin-top: 24px;
+  }
+
+  .eyebrow {
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    color: var(--color-ink-text-softer);
+  }
+
+  blockquote {
+    margin: 0;
+    font-family: var(--font-serif);
+    font-weight: 500;
+    font-style: italic;
+    font-size: clamp(26px, 3vw, 38px);
+    line-height: 1.35;
+  }
+
+  .author {
+    font-weight: 700;
+  }
+
+  .source {
+    color: var(--color-ink-text-softer);
+    font-weight: 500;
+  }
+
+  .link {
+    color: var(--color-white);
+    font-weight: 700;
+  }
+</style>

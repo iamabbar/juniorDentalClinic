@@ -1,0 +1,39 @@
+---
+interface Props {
+  href: string;
+  variant?: 'gold' | 'outline' | 'dark';
+  class?: string;
+}
+
+const { href, variant = 'gold', class: className = '' } = Astro.props;
+---
+
+<a href={href} class:list={['btn', variant, className]}>
+  <slot />
+</a>
+
+<style>
+  .btn {
+    padding: 16px 30px;
+    border-radius: 999px;
+    text-decoration: none;
+    font-weight: 700;
+    text-align: center;
+    display: inline-block;
+  }
+
+  .btn.gold {
+    background: var(--color-gold);
+    color: var(--color-ink);
+  }
+
+  .btn.outline {
+    border: 1.5px solid var(--color-ink);
+    color: var(--color-ink);
+  }
+
+  .btn.dark {
+    background: var(--color-ink);
+    color: var(--color-white);
+  }
+</style>

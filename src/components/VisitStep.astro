@@ -1,0 +1,105 @@
+---
+import Icon from './icons/Icon.astro';
+import type { IconName } from './icons/Icon.astro';
+
+interface Props {
+  number: string;
+  icon: IconName;
+  accent: 'pink' | 'gold' | 'teal' | 'green';
+  title: string;
+  description: string;
+  offset?: boolean;
+}
+
+const { number, icon, accent, title, description, offset = false } = Astro.props;
+
+const accentBg: Record<string, string> = {
+  pink: 'var(--accent-pink-bg)',
+  gold: 'var(--accent-gold-bg)',
+  teal: 'var(--accent-teal-bg)',
+  green: 'var(--accent-green-bg)',
+};
+
+const accentColor: Record<string, string> = {
+  pink: 'var(--accent-pink)',
+  gold: 'var(--accent-gold)',
+  teal: 'var(--accent-teal)',
+  green: 'var(--accent-green)',
+};
+---
+
+<li class:list={['step', { offset }]}>
+  <div class="icon-circle" style={`background:${accentBg[accent]}`}>
+    <Icon name={icon} color={accentColor[accent]} size={40} strokeWidth={1.8} />
+    <span class="badge">{number}</span>
+  </div>
+  <div class="text-card">
+    <h3>{title}</h3>
+    <p>{description}</p>
+  </div>
+</li>
+
+<style>
+  .step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 16px;
+    margin-top: 0;
+  }
+
+  .step.offset {
+    margin-top: 56px;
+  }
+
+  .icon-circle {
+    position: relative;
+    width: 132px;
+    height: 132px;
+    border-radius: 50%;
+    border: 6px solid var(--color-white);
+    box-shadow: 0 12px 28px rgba(20, 40, 75, 0.16);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .badge {
+    position: absolute;
+    top: -6px;
+    right: -6px;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: var(--color-ink);
+    color: var(--color-gold);
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: 19px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 3px solid var(--color-white);
+  }
+
+  .text-card {
+    background: var(--color-white);
+    border-radius: 24px;
+    padding: 20px 22px;
+    width: 100%;
+  }
+
+  h3 {
+    margin: 0 0 6px;
+    font-family: var(--font-serif);
+    font-weight: 600;
+    font-size: 23px;
+  }
+
+  p {
+    margin: 0;
+    color: var(--color-ink-soft);
+    font-size: 15px;
+  }
+</style>

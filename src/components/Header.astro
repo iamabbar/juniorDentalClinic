@@ -1,0 +1,88 @@
+---
+import { CLINIC, NAV_LINKS, LOGO_LETTER_COLORS } from '../consts';
+
+const logoLetters = 'Junior'.split('');
+---
+
+<header class="site-header">
+  <div class="container inner">
+    <a href="#top" class="logo">
+      <span class="logo-wordmark">
+        {logoLetters.map((letter, i) => <span style={`color:${LOGO_LETTER_COLORS[i % LOGO_LETTER_COLORS.length]}`}>{letter}</span>)}
+        <span class="logo-rest"> Dental Clinic</span>
+      </span>
+      <span class="logo-sub">{CLINIC.tagline} · {CLINIC.doctorName.toUpperCase()}</span>
+    </a>
+    <nav aria-label="Main" class="nav">
+      {NAV_LINKS.map((link) => <a href={link.href}>{link.label}</a>)}
+      <a href="#contact" class="nav-cta">Book an appointment</a>
+    </nav>
+  </div>
+</header>
+
+<style>
+  .site-header {
+    position: sticky;
+    top: 0;
+    z-index: 40;
+    background: var(--color-white);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .inner {
+    padding-block: 18px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 14px;
+  }
+
+  .logo {
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    line-height: 1.1;
+  }
+
+  .logo-wordmark {
+    font-family: var(--font-serif);
+    font-weight: 600;
+    font-size: 27px;
+  }
+
+  .logo-rest {
+    color: var(--color-ink);
+  }
+
+  .logo-sub {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    color: var(--color-ink-soft);
+    margin-top: 4px;
+  }
+
+  .nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+    align-items: center;
+    font-weight: 600;
+    font-size: 16px;
+  }
+
+  .nav a {
+    padding: 12px 12px;
+    text-decoration: none;
+  }
+
+  .nav-cta {
+    margin-left: 8px;
+    padding: 13px 24px !important;
+    background: var(--color-gold);
+    color: var(--color-ink);
+    border-radius: 999px;
+    font-weight: 700;
+  }
+</style>

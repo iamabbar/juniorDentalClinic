@@ -1,0 +1,85 @@
+:root {
+  /* Ink (navy) — primary text and dark surfaces */
+  --color-ink: #14284b;
+  --color-ink-soft: #2a3654;
+  --color-ink-softer: #46557a;
+  --color-ink-softest: #22304f;
+  --color-ink-circle-border: #2e4a7a;
+  --color-ink-circle-bg: #1e3a6b;
+  --color-ink-text-soft: #c9d6ee;
+  --color-ink-text-softer: #7fb0ea;
+
+  --color-white: #ffffff;
+  --color-border: #e1e8f2;
+  --color-placeholder-text: #0f2a55;
+  --color-hours-bg: #f4f6fa;
+
+  /* Brand accents */
+  --color-accent: #0e3a8c;
+  --color-gold: #f6b92b;
+  --color-gold-decor: #fad06a;
+  --color-highlight-marker: #fde08a;
+  --color-sky: #96c6f7;
+  --color-sky-deep: #75b0f2;
+
+  /* Card / icon accent palette */
+  --accent-pink: #c42a72;
+  --accent-pink-bg: #fce1ec;
+  --accent-gold: #a87900;
+  --accent-gold-bg: #fff1c2;
+  --accent-purple: #6a3d9a;
+  --accent-purple-bg: #eee4fa;
+  --accent-teal: #137c8e;
+  --accent-teal-bg: #d9f1f5;
+  --accent-green: #2f7d34;
+  --accent-green-bg: #e1f3e2;
+  --accent-orange: #c25a12;
+  --color-icon-email-stroke: #9fd8e2;
+
+  --font-serif: 'Newsreader', serif;
+  --font-sans: 'Manrope', system-ui, sans-serif;
+
+  --container-width: 1200px;
+  --container-width-wide: 1360px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: var(--color-white);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  font-size: 17px;
+  line-height: 1.6;
+}
+
+a {
+  color: var(--color-ink);
+}
+
+a:hover {
+  color: #000000;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+input,
+select {
+  font: inherit;
+}
+
+.container {
+  max-width: var(--container-width);
+  margin: 0 auto;
+  padding-inline: 24px;
+}

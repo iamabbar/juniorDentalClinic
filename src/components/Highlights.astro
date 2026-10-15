@@ -1,0 +1,272 @@
+---
+import Icon from './icons/Icon.astro';
+import { HIGHLIGHTS } from '../consts';
+
+const bars = [
+  { height: 22, color: 'var(--accent-pink)' },
+  { height: 34, color: 'var(--accent-gold)' },
+  { height: 46, color: 'var(--accent-purple)' },
+  { height: 58, color: 'var(--accent-orange)' },
+  { height: 70, color: 'var(--accent-teal)' },
+  { height: 82, color: 'var(--accent-green)' },
+];
+---
+
+<section aria-label="Highlights" class="highlights">
+  <div class="container grid">
+    <div class="years-card">
+      <span class="ring ring-outer" aria-hidden="true"></span>
+      <span class="ring ring-inner" aria-hidden="true"></span>
+      <span class="ring-dot" aria-hidden="true"></span>
+      <div class="years-value">{HIGHLIGHTS.years.value}</div>
+      <div class="years-label">{HIGHLIGHTS.years.label}</div>
+      <div class="years-caption">{HIGHLIGHTS.years.caption}</div>
+    </div>
+
+    <div class="right-col">
+      <div class="rating-card">
+        <span class="rating-decor" aria-hidden="true"></span>
+        <div class="rating-text">
+          <div class="rating-value">{HIGHLIGHTS.rating.value}</div>
+          <div class="rating-label">{HIGHLIGHTS.rating.label}</div>
+        </div>
+        <div class="stars">
+          {Array.from({ length: 5 }).map(() => <Icon name="star" variant="fill" color="var(--color-ink)" size={30} />)}
+        </div>
+      </div>
+
+      <div class="bottom-row">
+        <div class="patients-card">
+          <span class="patients-decor" aria-hidden="true">
+            <Icon name="heart" variant="fill" color="var(--accent-pink)" size={90} />
+          </span>
+          <div class="patients-value">{HIGHLIGHTS.patients.value}</div>
+          <div class="patients-label">{HIGHLIGHTS.patients.label}</div>
+        </div>
+
+        <div class="age-card">
+          <div class="bars" aria-hidden="true">
+            {bars.map((bar) => <span style={`height:${bar.height}px; background:${bar.color}`}></span>)}
+          </div>
+          <div>
+            <div class="age-value">{HIGHLIGHTS.ageRange.value}</div>
+            <div class="age-label">{HIGHLIGHTS.ageRange.label}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .highlights {
+    padding: 8px 0 104px;
+  }
+
+  .grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+
+  .years-card {
+    flex: 1 1 420px;
+    min-width: 0;
+    min-height: 420px;
+    background: var(--color-ink);
+    color: var(--color-white);
+    border-radius: 36px;
+    padding: 44px;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+  }
+
+  .ring {
+    position: absolute;
+    border-radius: 50%;
+    border: 2px solid var(--color-ink-circle-border);
+  }
+
+  .ring-outer {
+    top: -90px;
+    right: -90px;
+    width: 300px;
+    height: 300px;
+  }
+
+  .ring-inner {
+    top: -40px;
+    right: -40px;
+    width: 200px;
+    height: 200px;
+  }
+
+  .ring-dot {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background: var(--color-gold);
+  }
+
+  .years-value {
+    position: relative;
+    font-family: var(--font-serif);
+    font-weight: 600;
+    font-size: clamp(96px, 12vw, 150px);
+    line-height: 0.9;
+    color: var(--color-gold);
+  }
+
+  .years-label {
+    position: relative;
+    font-family: var(--font-serif);
+    font-size: 30px;
+    margin-top: 10px;
+  }
+
+  .years-caption {
+    position: relative;
+    color: var(--color-ink-text-soft);
+    margin-top: 8px;
+    font-size: 16px;
+  }
+
+  .right-col {
+    flex: 1 1 420px;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .rating-card {
+    background: var(--color-gold);
+    border-radius: 36px;
+    padding: 32px 36px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .rating-decor {
+    position: absolute;
+    bottom: -50px;
+    left: -30px;
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    background: var(--color-gold-decor);
+  }
+
+  .rating-text {
+    position: relative;
+  }
+
+  .rating-value {
+    font-family: var(--font-serif);
+    font-weight: 600;
+    font-size: 64px;
+    line-height: 1;
+    color: var(--color-ink);
+  }
+
+  .rating-label {
+    font-weight: 700;
+    color: var(--color-ink);
+  }
+
+  .stars {
+    position: relative;
+    display: flex;
+    gap: 4px;
+  }
+
+  .bottom-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    flex: 1 1 auto;
+  }
+
+  .patients-card {
+    flex: 1 1 200px;
+    min-width: 0;
+    background: var(--accent-pink-bg);
+    border-radius: 36px 36px 36px 8px;
+    padding: 30px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .patients-decor {
+    position: absolute;
+    right: -14px;
+    bottom: -14px;
+    opacity: 0.35;
+  }
+
+  .patients-value {
+    position: relative;
+    font-family: var(--font-serif);
+    font-weight: 600;
+    font-size: 46px;
+    line-height: 1;
+    color: var(--accent-pink);
+  }
+
+  .patients-label {
+    position: relative;
+    font-weight: 700;
+    margin-top: 8px;
+    color: var(--color-ink);
+  }
+
+  .age-card {
+    flex: 1 1 200px;
+    min-width: 0;
+    background: var(--color-white);
+    border: 2px solid var(--color-border);
+    border-radius: 36px 36px 8px 36px;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 16px;
+  }
+
+  .bars {
+    display: flex;
+    align-items: flex-end;
+    gap: 6px;
+    height: 82px;
+  }
+
+  .bars span {
+    width: 18px;
+    border-radius: 9px;
+  }
+
+  .age-value {
+    font-family: var(--font-serif);
+    font-weight: 600;
+    font-size: 46px;
+    line-height: 1;
+    color: var(--color-ink);
+  }
+
+  .age-label {
+    font-weight: 700;
+    margin-top: 8px;
+    color: var(--color-ink);
+  }
+</style>

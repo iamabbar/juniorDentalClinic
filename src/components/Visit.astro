@@ -1,0 +1,178 @@
+---
+import SectionEyebrow from './SectionEyebrow.astro';
+import VisitStep from './VisitStep.astro';
+import Icon from './icons/Icon.astro';
+import { VISIT } from '../consts';
+
+const dotColor: Record<string, string> = {
+  pink: 'var(--accent-pink)',
+  gold: 'var(--accent-gold)',
+  green: 'var(--accent-green)',
+};
+---
+
+<section id="visit" class="visit">
+  <div class="container inner">
+    <div class="header">
+      <SectionEyebrow label={VISIT.eyebrow} dotColor="var(--accent-purple)" />
+      <h2>
+        {VISIT.heading} <em>{VISIT.headingEmphasis}</em> {VISIT.headingSuffix}
+      </h2>
+      <div class="badges">
+        {VISIT.badges.map((badge) => (
+          <span class="badge-pill">
+            <span class="dot" style={`background:${dotColor[badge.dot]}`}></span>
+            {badge.label}
+          </span>
+        ))}
+      </div>
+    </div>
+
+    <div class="steps-wrap">
+      <svg aria-hidden="true" viewBox="0 0 1200 120" preserveAspectRatio="none" class="connector">
+        <path
+          d="M0 20 C 150 20, 150 90, 300 90 S 450 20, 600 20 S 750 90, 900 90 S 1050 20, 1200 20"
+          fill="none"
+          stroke="var(--color-white)"
+          stroke-width="5"
+          stroke-dasharray="2 16"
+          stroke-linecap="round"
+        ></path>
+      </svg>
+      <ol class="steps">
+        {VISIT.steps.map((step, index) => (
+          <VisitStep
+            number={String(index + 1).padStart(2, '0')}
+            icon={step.icon as any}
+            accent={step.accent as any}
+            title={step.title}
+            description={step.description}
+            offset={step.offset}
+          />
+        ))}
+      </ol>
+    </div>
+
+    <div class="tip">
+      <span class="tip-icon">
+        <Icon name="tooth" color="var(--color-ink)" size={28} strokeWidth={1.8} />
+      </span>
+      <div>
+        <div class="tip-title">{VISIT.tip.title}</div>
+        <div class="tip-text">{VISIT.tip.text}</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .visit {
+    padding: 96px 0;
+    background: var(--color-sky);
+  }
+
+  .inner {
+    display: flex;
+    flex-direction: column;
+    gap: 56px;
+  }
+
+  .header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 18px;
+  }
+
+  h2 {
+    margin: 0;
+    font-family: var(--font-serif);
+    font-weight: 500;
+    font-size: clamp(34px, 4vw, 52px);
+    line-height: 1.1;
+    max-width: 760px;
+  }
+
+  h2 em {
+    color: var(--color-accent);
+    font-style: normal;
+  }
+
+  .badges {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+  }
+
+  .badge-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--color-white);
+    border-radius: 999px;
+    padding: 10px 18px;
+    font-weight: 700;
+    font-size: 15px;
+  }
+
+  .dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+  }
+
+  .steps-wrap {
+    position: relative;
+  }
+
+  .connector {
+    position: absolute;
+    left: 5%;
+    width: 90%;
+    top: 50px;
+    height: 120px;
+  }
+
+  .steps {
+    position: relative;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    gap: 24px;
+  }
+
+  .tip {
+    align-self: center;
+    max-width: 760px;
+    background: var(--color-gold);
+    border-radius: 28px 28px 28px 6px;
+    padding: 22px 28px;
+    display: flex;
+    gap: 18px;
+    align-items: center;
+  }
+
+  .tip-icon {
+    flex: 0 0 52px;
+    height: 52px;
+    border-radius: 50%;
+    background: var(--color-white);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .tip-title {
+    font-weight: 800;
+    color: var(--color-ink);
+  }
+
+  .tip-text {
+    color: var(--color-ink);
+    font-size: 16px;
+  }
+</style>

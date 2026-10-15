@@ -1,0 +1,29 @@
+---
+interface Props {
+  color?: string;
+  flip?: boolean;
+  marginTop?: string;
+}
+
+const { color = 'var(--color-ink)', flip = false, marginTop } = Astro.props;
+
+const path = flip ? 'M0 0 Q 720 60 1440 0 Z' : 'M0 60 Q 720 0 1440 60 Z';
+---
+
+<svg
+  aria-hidden="true"
+  viewBox="0 0 1440 60"
+  preserveAspectRatio="none"
+  class="wave"
+  style={marginTop ? `margin-top:${marginTop}` : undefined}
+>
+  <path d={path} fill={color}></path>
+</svg>
+
+<style>
+  .wave {
+    display: block;
+    width: 100%;
+    height: 60px;
+  }
+</style>

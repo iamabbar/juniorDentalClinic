@@ -1,0 +1,178 @@
+---
+import SectionEyebrow from './SectionEyebrow.astro';
+import Icon from './icons/Icon.astro';
+import { ABOUT, CLINIC } from '../consts';
+
+const accentBg: Record<string, string> = {
+  pink: 'var(--accent-pink-bg)',
+  purple: 'var(--accent-purple-bg)',
+  gold: 'var(--accent-gold-bg)',
+  teal: 'var(--accent-teal-bg)',
+};
+
+const accentColor: Record<string, string> = {
+  pink: 'var(--accent-pink)',
+  purple: 'var(--accent-purple)',
+  gold: 'var(--accent-gold)',
+  teal: 'var(--accent-teal)',
+};
+---
+
+<section id="about" class="about">
+  <div class="container inner">
+    <div class="portrait-col">
+      <div class="portrait">[ Portrait of {CLINIC.doctorName} ]</div>
+    </div>
+    <div class="content-col">
+      <SectionEyebrow label={ABOUT.eyebrow} dotColor="var(--accent-purple)" />
+      <h2>{ABOUT.heading} <em>{ABOUT.headingEmphasis}</em></h2>
+      <p class="bio">{ABOUT.bio}</p>
+      <div class="quote-box">
+        <span class="quote-mark" aria-hidden="true">&ldquo;</span>
+        <p class="quote">{ABOUT.quote}</p>
+      </div>
+      <div class="facts">
+        {ABOUT.facts.map((fact) => (
+          <div class="fact">
+            <span class="fact-icon" style={`background:${accentBg[fact.accent]}`}>
+              <Icon name={fact.icon as any} color={accentColor[fact.accent]} size={22} />
+            </span>
+            <div class="fact-text">
+              <div class="fact-title">{fact.title}</div>
+              <div class="fact-detail">{fact.detail}</div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .about {
+    padding: 104px 0;
+    background: var(--color-sky);
+    overflow: hidden;
+  }
+
+  .inner {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 72px;
+    align-items: center;
+  }
+
+  .portrait-col {
+    flex: 1 1 400px;
+    min-width: 0;
+    display: flex;
+    justify-content: center;
+  }
+
+  .portrait {
+    width: 100%;
+    max-width: 440px;
+    aspect-ratio: 4 / 5;
+    border-radius: 36px;
+    background: var(--color-white);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 40px;
+    color: var(--color-placeholder-text);
+    font-weight: 600;
+  }
+
+  .content-col {
+    flex: 1 1 520px;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+  }
+
+  h2 {
+    margin: 0;
+    font-family: var(--font-serif);
+    font-weight: 500;
+    font-size: clamp(36px, 4.4vw, 58px);
+    line-height: 1.05;
+  }
+
+  h2 em {
+    color: var(--color-accent);
+    font-style: normal;
+  }
+
+  .bio {
+    margin: 0;
+    color: var(--color-ink-softest);
+    font-size: 18px;
+    line-height: 1.7;
+  }
+
+  .quote-box {
+    position: relative;
+    background: var(--color-gold);
+    border-radius: 28px 28px 28px 6px;
+    padding: 24px 28px 24px 70px;
+  }
+
+  .quote-mark {
+    position: absolute;
+    left: 22px;
+    top: 6px;
+    font-family: var(--font-serif);
+    font-size: 72px;
+    line-height: 1;
+    color: var(--color-ink);
+  }
+
+  .quote {
+    margin: 0;
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: 22px;
+    line-height: 1.45;
+    color: var(--color-ink);
+  }
+
+  .facts {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    gap: 12px;
+  }
+
+  .fact {
+    background: var(--color-white);
+    border-radius: 22px;
+    padding: 16px 18px;
+    display: flex;
+    gap: 14px;
+    align-items: center;
+  }
+
+  .fact-icon {
+    flex: 0 0 44px;
+    height: 44px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .fact-text {
+    line-height: 1.35;
+  }
+
+  .fact-title {
+    font-weight: 800;
+    font-size: 15px;
+  }
+
+  .fact-detail {
+    color: var(--color-ink-soft);
+    font-size: 14px;
+  }
+</style>
