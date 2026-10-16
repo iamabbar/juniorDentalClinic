@@ -6,6 +6,10 @@ export const SITE = {
   description: 'Junior Dental Clinic: gentle, specialist dental care for babies, children and teens.',
 };
 
+// Exact coordinates resolved from the clinic's Google Maps link
+// (https://maps.app.goo.gl/2M52yELtHjrdg76s7), used for a precise pin.
+const MAP_COORDS = '33.878404,35.500834';
+
 export const CLINIC = {
   name: 'Junior Dental Clinic',
   doctorName: 'Dr. Walid Hatahet',
@@ -27,7 +31,8 @@ export const CLINIC = {
   address: {
     line: 'Corniche El-Mazraa, facing Abed Naser mosque',
     area: 'Mazraa, Beirut',
-    mapsLink: '[MAPS LINK]',
+    mapsLink: 'https://maps.app.goo.gl/2M52yELtHjrdg76s7',
+    mapsEmbedSrc: `https://www.google.com/maps?q=${MAP_COORDS}&output=embed`,
   },
   responseTime: 'a few hours',
 };

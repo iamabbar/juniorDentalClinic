@@ -34,10 +34,13 @@ import { CONTACT, CLINIC } from '../consts';
       </div>
 
       <div class="right">
-        <div class="map">
-          [ Google Map ]
-          <span class="pin" aria-hidden="true"></span>
-        </div>
+        <iframe
+          class="map"
+          src={CLINIC.address.mapsEmbedSrc}
+          title="Map to the clinic"
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+        ></iframe>
         <div class="dashed"></div>
         <div class="info">
           <div class="address">
@@ -213,26 +216,11 @@ import { CONTACT, CLINIC } from '../consts';
   }
 
   .map {
-    min-height: 210px;
-    background: var(--accent-teal-bg);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--accent-teal);
-    font-weight: 700;
-    position: relative;
-  }
-
-  .pin {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -120%);
-    width: 52px;
-    height: 52px;
-    border-radius: 50% 50% 50% 0;
-    background: var(--accent-pink);
-    rotate: -45deg;
+    width: 100%;
+    flex: 1 1 auto;
+    min-height: 260px;
+    border: 0;
+    display: block;
   }
 
   .dashed {
