@@ -1,6 +1,3 @@
-// Central place for all editable clinic content.
-// Replace the placeholder values (and anything in [brackets]) with the real clinic details.
-
 export const SITE = {
   title: 'Junior Dental Clinic — Pediatric Dentistry',
   description: 'Junior Dental Clinic: gentle, specialist dental care for babies, children and teens.',

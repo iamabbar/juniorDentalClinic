@@ -1,5 +1,4 @@
 :root {
-  /* Ink (navy) — primary text and dark surfaces */
   --color-ink: #14284b;
   --color-ink-soft: #2a3654;
   --color-ink-softer: #46557a;
@@ -14,7 +13,6 @@
   --color-placeholder-text: #0f2a55;
   --color-hours-bg: #f4f6fa;
 
-  /* Brand accents */
   --color-accent: #0e3a8c;
   --color-gold: #f6b92b;
   --color-gold-decor: #fad06a;
@@ -22,7 +20,6 @@
   --color-sky: #96c6f7;
   --color-sky-deep: #75b0f2;
 
-  /* Card / icon accent palette */
   --accent-pink: #c42a72;
   --accent-pink-bg: #fce1ec;
   --accent-gold: #a87900;
